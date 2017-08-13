@@ -25,7 +25,7 @@ class GameScene: SKScene {
         
         
         
-        let type = TileType(center: #imageLiteral(resourceName: "CENTER"), topLeftEdge: #imageLiteral(resourceName: "TLE"), topEdge: #imageLiteral(resourceName: "TE"), topRightEdge: #imageLiteral(resourceName: "TRE"), rightEdge: #imageLiteral(resourceName: "RE"), bottomRightEdge: #imageLiteral(resourceName: "BRE"), bottomEdge: #imageLiteral(resourceName: "BE"), bottomLeftEdge: #imageLiteral(resourceName: "BLE"), leftEdge: #imageLiteral(resourceName: "LE"), topLeftCorner: #imageLiteral(resourceName: "TLC"), topRightCorner: #imageLiteral(resourceName: "TRC"), bottomRightCorner: #imageLiteral(resourceName: "BRC"), bottomLeftCorner: #imageLiteral(resourceName: "BLC"))
+        let type = TileType(name: "Dungeon", center: #imageLiteral(resourceName: "CENTER"), topLeftEdge: #imageLiteral(resourceName: "TLE"), topEdge: #imageLiteral(resourceName: "TE"), topRightEdge: #imageLiteral(resourceName: "TRE"), rightEdge: #imageLiteral(resourceName: "RE"), bottomRightEdge: #imageLiteral(resourceName: "BRE"), bottomEdge: #imageLiteral(resourceName: "BE"), bottomLeftEdge: #imageLiteral(resourceName: "BLE"), leftEdge: #imageLiteral(resourceName: "LE"), topLeftCorner: #imageLiteral(resourceName: "TLC"), topRightCorner: #imageLiteral(resourceName: "TRC"), bottomRightCorner: #imageLiteral(resourceName: "BRC"), bottomLeftCorner: #imageLiteral(resourceName: "BLC"))
         
         let layer = TileMapLayer(tileTypes: [nil, type, type, type, type, type,
                                              type, type, type, type, type, type,

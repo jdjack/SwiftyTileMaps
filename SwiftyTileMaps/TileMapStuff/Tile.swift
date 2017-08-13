@@ -31,7 +31,7 @@ class Tile {
         
         
         // TRE
-        if (rightType == nil || rightType! != type) && (upType == nil || upType! != type) {
+        if (rightType == nil || !rightType!.isBlendableWith(type: type)) && (upType == nil || !upType!.isBlendableWith(type: type)) {
             if let texture = type.topRightEdgeTexture() {
                 currentTexture = texture
             }
@@ -39,7 +39,7 @@ class Tile {
         }
         
         // TLE
-        if (leftType == nil || leftType! != type) && (upType == nil || upType! != type) {
+        if (leftType == nil || !leftType!.isBlendableWith(type: type)) && (upType == nil || !upType!.isBlendableWith(type: type)) {
             if let texture = type.topLeftEgdeTexture() {
                 currentTexture = texture
             }
@@ -47,7 +47,7 @@ class Tile {
         }
         
         // BLE
-        if (leftType == nil || leftType! != type) && (downType == nil || downType! != type) {
+        if (leftType == nil || !leftType!.isBlendableWith(type: type)) && (downType == nil || !downType!.isBlendableWith(type: type)) {
             if let texture = type.bottomLeftEdgeTexture() {
                 currentTexture = texture
             }
@@ -55,7 +55,7 @@ class Tile {
         }
         
         // BRE
-        if (rightType == nil || rightType! != type) && (downType == nil || downType! != type) {
+        if (rightType == nil || !rightType!.isBlendableWith(type: type)) && (downType == nil || !downType!.isBlendableWith(type: type)) {
             if let texture = type.bottomRightEdgeTexture() {
                 currentTexture = texture
             }
@@ -63,7 +63,7 @@ class Tile {
         }
         
         // TE
-        if (leftType != nil && leftType! == type) && (rightType != nil && rightType! == type) && (upType == nil || upType! != type) {
+        if (leftType != nil && leftType!.isBlendableWith(type: type)) && (rightType != nil && rightType!.isBlendableWith(type: type)) && (upType == nil || !upType!.isBlendableWith(type: type)) {
             if let texture = type.topEdgeTexture() {
                 currentTexture = texture
             }
@@ -71,7 +71,7 @@ class Tile {
         }
         
         // RE
-        if (upType != nil && upType! == type) && (downType != nil && downType! == type) && (rightType == nil || rightType! != type) {
+        if (upType != nil && upType!.isBlendableWith(type: type)) && (downType != nil && downType!.isBlendableWith(type: type)) && (rightType == nil || !rightType!.isBlendableWith(type: type)) {
             if let texture = type.rightEdgeTexture() {
                 currentTexture = texture
             }
@@ -80,7 +80,7 @@ class Tile {
 
         
         // BE
-        if (leftType != nil && leftType! == type) && (rightType != nil && rightType! == type) && (downType == nil || downType! != type) {
+        if (leftType != nil && leftType!.isBlendableWith(type: type)) && (rightType != nil && rightType!.isBlendableWith(type: type)) && (downType == nil || !downType!.isBlendableWith(type: type)) {
             if let texture = type.bottomEdgeTexture() {
                 currentTexture = texture
             }
@@ -88,7 +88,7 @@ class Tile {
         }
         
         // LE
-        if (upType != nil && upType! == type) && (downType != nil && downType! == type) && (leftType == nil || leftType! != type) {
+        if (upType != nil && upType!.isBlendableWith(type: type)) && (downType != nil && downType!.isBlendableWith(type: type)) && (leftType == nil || !leftType!.isBlendableWith(type: type)) {
             if let texture = type.leftEdgeTexture() {
                 currentTexture = texture
             }
@@ -96,7 +96,7 @@ class Tile {
         }
         
         // BRC
-        if (leftType != nil && leftType! == type) && (upType != nil && upType! == type) && (upLeftType == nil || upLeftType! != type) {
+        if (leftType != nil && leftType!.isBlendableWith(type: type)) && (upType != nil && upType!.isBlendableWith(type: type)) && (upLeftType == nil || !upLeftType!.isBlendableWith(type: type)) {
             if let texture = type.bottomRightCornerTexture() {
                 currentTexture = texture
             }
@@ -104,7 +104,7 @@ class Tile {
         }
         
         // BLC
-        if (rightType != nil && rightType! == type) && (upType != nil && upType! == type) && (upRightType == nil || upRightType! != type) {
+        if (rightType != nil && rightType!.isBlendableWith(type: type)) && (upType != nil && upType!.isBlendableWith(type: type)) && (upRightType == nil || !upRightType!.isBlendableWith(type: type)) {
             if let texture = type.bottomLeftCornerTexture() {
                 currentTexture = texture
             }
@@ -112,7 +112,7 @@ class Tile {
         }
         
         // TRC
-        if (leftType != nil && leftType! == type) && (downType != nil && downType! == type) && (downLeftType == nil || downLeftType! != type) {
+        if (leftType != nil && leftType!.isBlendableWith(type: type)) && (downType != nil && downType!.isBlendableWith(type: type)) && (downLeftType == nil || !downLeftType!.isBlendableWith(type: type)) {
             if let texture = type.topRightCornerTexture() {
                 currentTexture = texture
             }
@@ -120,7 +120,7 @@ class Tile {
         }
         
         // TLC
-        if (rightType != nil && rightType! == type) && (downType != nil && downType! == type) && (downRightType == nil || downRightType! != type) {
+        if (rightType != nil && rightType!.isBlendableWith(type: type)) && (downType != nil && downType!.isBlendableWith(type: type)) && (downRightType == nil || !downRightType!.isBlendableWith(type: type)) {
             if let texture = type.topLeftCornerTexture() {
                 currentTexture = texture
             }

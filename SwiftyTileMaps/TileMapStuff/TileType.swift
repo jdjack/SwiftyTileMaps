@@ -9,7 +9,10 @@
 import UIKit
 import SpriteKit
 
-public class TileType {
+public class TileType: Hashable {
+    public var hashValue: Int
+    
+    private let name: String
     
     private let center: SKTexture
     
@@ -31,16 +34,31 @@ public class TileType {
     private var bottomRightCorner: SKTexture?
     private var bottomLeftCorner: SKTexture?
     
+    var blendedTypes: Set = Set<TileType>()
     
-    init(image: UIImage) {
+    
+    init(name: String, image: UIImage) {
+        
+        self.name = name
+        hashValue = name.hashValue
+        
         self.center = SKTexture(image: image)
+        self.blendedTypes = [self]
+        
     }
     
-    init(texture: SKTexture) {
+    init(name: String, texture: SKTexture) {
+        self.name = name
+        hashValue = name.hashValue
+        
         self.center = texture
+        self.blendedTypes = [self]
     }
     
-    init(center: SKTexture, topLeftEdge: SKTexture?, topEdge: SKTexture?, topRightEdge: SKTexture?, rightEdge: SKTexture?, bottomRightEdge: SKTexture?, bottomEdge: SKTexture?, bottomLeftEdge: SKTexture?, leftEdge: SKTexture?, topLeftCorner: SKTexture?, topRightCorner: SKTexture?, bottomRightCorner: SKTexture?, bottomLeftCorner: SKTexture?) {
+    init(name: String, center: SKTexture, topLeftEdge: SKTexture?, topEdge: SKTexture?, topRightEdge: SKTexture?, rightEdge: SKTexture?, bottomRightEdge: SKTexture?, bottomEdge: SKTexture?, bottomLeftEdge: SKTexture?, leftEdge: SKTexture?, topLeftCorner: SKTexture?, topRightCorner: SKTexture?, bottomRightCorner: SKTexture?, bottomLeftCorner: SKTexture?) {
+        
+        self.name = name
+        hashValue = name.hashValue
         
         self.center = center
         self.topLeftEdge = topLeftEdge
@@ -56,10 +74,15 @@ public class TileType {
         self.topRightCorner = topRightCorner
         self.bottomRightCorner = bottomRightCorner
         self.bottomLeftCorner = bottomLeftCorner
+        self.blendedTypes = [self]
 
     }
     
-    init(center: UIImage, topLeftEdge: UIImage?, topEdge: UIImage?, topRightEdge: UIImage?, rightEdge: UIImage?, bottomRightEdge: UIImage?, bottomEdge: UIImage?, bottomLeftEdge: UIImage?, leftEdge: UIImage?, topLeftCorner: UIImage?, topRightCorner: UIImage?, bottomRightCorner: UIImage?, bottomLeftCorner: UIImage?) {
+    init(name: String, center: UIImage, topLeftEdge: UIImage?, topEdge: UIImage?, topRightEdge: UIImage?, rightEdge: UIImage?, bottomRightEdge: UIImage?, bottomEdge: UIImage?, bottomLeftEdge: UIImage?, leftEdge: UIImage?, topLeftCorner: UIImage?, topRightCorner: UIImage?, bottomRightCorner: UIImage?, bottomLeftCorner: UIImage?) {
+        
+        self.name = name
+        hashValue = name.hashValue
+        
         
         self.center = SKTexture(image: center)
         
@@ -111,6 +134,22 @@ public class TileType {
             self.bottomLeftCorner = SKTexture(image: texture)
         }
         
+        self.blendedTypes = [self]
+        
+    }
+    
+    func addBlendedType(type: TileType) {
+        self.blendedTypes.insert(type)
+        type.blendedTypes.insert(self)
+    }
+    
+    func isBlendableWith(type: TileType) -> Bool {
+        return self.blendedTypes.contains(type)
+    }
+    
+    func removeBlendedType(type: TileType) {
+        self.blendedTypes.remove(type)
+        type.blendedTypes.remove(self)
     }
     
     func centerTexture() -> SKTexture {
@@ -169,22 +208,12 @@ public class TileType {
         return [center, topLeftEdge, topEdge, topRightEdge, rightEdge, bottomRightEdge, bottomEdge, bottomLeftEdge, leftEdge, topLeftCorner, topRightCorner, bottomLeftCorner, bottomRightCorner]
     }
     
-    static func ==(lhs: TileType, rhs: TileType) -> Bool {
+    public static func ==(lhs: TileType, rhs: TileType) -> Bool {
         
-        var match = true
-        
-        let lhsTextures = lhs.allTextures()
-        
-        for (i, texture) in rhs.allTextures().enumerated() {
-            if texture != lhsTextures[i] {
-                match = false
-            }
-        }
-        
-        return match
+        return lhs.hashValue == rhs.hashValue
     }
     
-    static func !=(lhs: TileType, rhs: TileType) -> Bool {
+    public static func !=(lhs: TileType, rhs: TileType) -> Bool {
         
         return !(lhs == rhs)
     }
