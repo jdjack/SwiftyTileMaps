@@ -31,7 +31,7 @@ let layer = TileMapLayer(tileTypes: [nil, type1, type1, type1, type1, type1,
 ```
 
 You can place nil values into your array where you don't want tiles to appear. This particular array ends up looking like below:
-![alt text](http://imgur.com/a/LPvbd)
+![alt text](http://i.imgur.com/Gbf2tzm.jpg)
 
 As you can see, the walls and corners were automatically placed, with the center tile everywhere else.
 
@@ -39,7 +39,7 @@ As you can see, the walls and corners were automatically placed, with the center
 
 By default, two tile types are seen as boundaries, so the edge tiles will form on the border of two types as shown here:
 
-![alt text](http://imgur.com/G5n64LJ)
+![alt text](http://imgur.com/G5n64LJ.jpg)
 
 Sometimes this isn't what you want out of tiles, so you can tell the layer to draw the tiles as if they were one set. To do this, use the following code:
 
@@ -51,7 +51,7 @@ Note that you do not need to do this both ways.
 
 The result will then look like this:
 
-![alt text](http://imgur.com/6QAWD0b)
+![alt text](http://imgur.com/6QAWD0b.jpg)
 
 ### Adding to the TileMap
 
